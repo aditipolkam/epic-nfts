@@ -14,10 +14,10 @@ contract MyEpicNFT is ERC721URIStorage {
         console.log("This is my NFT contract. LOL");
     }
 
-    function makeAnEpicNFT() public {
+    function makeAnEpicNFT(string memory tokenURI) public {
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender, newItemId);
-        _setTokenURI(newItemId, "https://jsonkeeper.com/b/A3MK");
+        _setTokenURI(newItemId, tokenURI);
         console.log(
             "An NFT w/ ID %s has been minted to %s",
             newItemId,

@@ -5,12 +5,10 @@ const main = async () => {
     await nftContract.deployed();
     console.log("Contract deployed to ", nftContract.address);
 
-
-    let txn = await nftContract.makeAnEpicNFT()
+    let tokenURI = "https://jsonkeeper.com/b/CQZ0"
+    let txn = await nftContract.makeAnEpicNFT(tokenURI)
     await txn.wait()
-
-    txn = await nftContract.makeAnEpicNFT()
-    await txn.wait()
+    console.log("Minted NFT #0")
 
 };
 
@@ -26,4 +24,4 @@ const runMain = async () => {
 
 runMain();
 
-//https://jsonkeeper.com/b/A3MK
+//
