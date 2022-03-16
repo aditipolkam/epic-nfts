@@ -8,19 +8,8 @@ const main = async () => {
     //let tokenURI = "https://jsonkeeper.com/b/CQZ0"
     let txn = await nftContract.makeAnEpicNFT()
     await txn.wait()
-    console.log("Minted NFT #0")
+    console.log("Minted NFT")
 
-    txn = await nftContract.makeAnEpicNFT()
-    await txn.wait()
-    console.log("Minted NFT #1")
-
-    txn = await nftContract.makeAnEpicNFT()
-    await txn.wait()
-    console.log("Minted NFT #2")
-
-    txn = await nftContract.makeAnEpicNFT()
-    await txn.wait()
-    console.log("Minted NFT #3")
 
 };
 
