@@ -78,6 +78,10 @@ contract MyEpicNFT is ERC721URIStorage {
         console.log("This is my NFT contract. LOL");
     }
 
+    function getTotalTokens() public view returns (uint256) {
+        return _tokenIds.current();
+    }
+
     function pickRandomFirstWord(uint256 tokenId)
         public
         view

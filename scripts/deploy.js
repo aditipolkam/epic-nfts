@@ -10,6 +10,9 @@ const main = async () => {
     await txn.wait()
     console.log("Minted NFT")
 
+    let total = await nftContract.getTotalTokens()
+    console.log("Total Tokens: ", total)
+
 
 };
 
