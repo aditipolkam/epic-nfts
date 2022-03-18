@@ -1,15 +1,12 @@
-# Basic Sample Hardhat Project
+# 3-word Jumble
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+Mint your own NFT [here](https://nft-starter-project.aditipolkam.repl.co/)
 
-Try running some of the following tasks:
+## Tech Stack:
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+
+1. Solidity (write smart contracts)
+2. React (develop frontend)
+3. Javascript (write deploy and test scripts)
+4. Hardhat (development environment)
+5. Ethers.js (interaction with smart contract through web app)
