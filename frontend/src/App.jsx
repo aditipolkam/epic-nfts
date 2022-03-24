@@ -14,30 +14,30 @@ const App = () => {
 
   const [currentAccount, setCurrentAccount] = useState("");
   const [totalNFT, setTotalNFT] = useState(0);
-    
+
   const checkIfWalletIsConnected = async () => {
-      const { ethereum } = window;
+    const { ethereum } = window;
 
-      if (!ethereum) {
-          console.log("Make sure you have metamask!");
-          return;
-      } else {
-          console.log("We have the ethereum object", ethereum);
-      }
+    if (!ethereum) {
+      console.log("Make sure you have metamask!");
+      return;
+    } else {
+      console.log("We have the ethereum object", ethereum);
+    }
 
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
 
-      if (accounts.length !== 0) {
-          const account = accounts[0];
-          console.log("Found an authorized account:", account);
-					setCurrentAccount(account)
-          //when user wallet is authorized
-          setupEventListener()
-      } else {
-          console.log("No authorized account found")
-      }
+    if (accounts.length !== 0) {
+      const account = accounts[0];
+      console.log("Found an authorized account:", account);
+      setCurrentAccount(account)
+      //when user wallet is authorized
+      setupEventListener()
+    } else {
+      console.log("No authorized account found")
+    }
   }
-  
+
   const connectWallet = async () => {
     try {
       const { ethereum } = window;
@@ -51,7 +51,7 @@ const App = () => {
 
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
-      setupEventListener() 
+      setupEventListener()
     } catch (error) {
       console.log(error)
     }
@@ -69,10 +69,10 @@ const App = () => {
         const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
 
         connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
-        console.log(from, tokenId.toNumber())
-        alert(`Hey there! We've minted your NFT and sent it to your wallet. View it here: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`)
+          console.log(from, tokenId.toNumber())
+          alert(`Hey there! We've minted your NFT and sent it to your wallet. View it here: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`)
         });
-      } 
+      }
       else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -81,24 +81,24 @@ const App = () => {
     }
   }
 
-  const getChainId = async () =>{
+  const getChainId = async () => {
     let chainId = await ethereum.request({ method: 'eth_chainId' });
     console.log("Connected to chain " + chainId);
     return chainId;
   }
-  
+
   const askContractToMintNft = async () => {
     let chainId = await getChainId();
-    const rinkebyChainId = "0x4"; 
+    const rinkebyChainId = "0x4";
     if (chainId !== rinkebyChainId) {
-    	alert("You are not connected to the Rinkeby Test Network!");
+      alert("You are not connected to the Rinkeby Test Network!");
       return;
     }
-    if (totalNFT === TOTAL_MINT_COUNT){
+    if (totalNFT === TOTAL_MINT_COUNT) {
       alert("Maximum token already minted.");
       return;
     }
-    else{
+    else {
       alert("Your NFT minting process started.")
     }
     try {
@@ -125,7 +125,7 @@ const App = () => {
     }
   }
 
-  const getTotalNFTsMintedSoFar = async () =>{
+  const getTotalNFTsMintedSoFar = async () => {
     let total = 0;
     try {
       const { ethereum } = window;
@@ -137,21 +137,22 @@ const App = () => {
         //console.log("Total tokens:",total.toNumber())
       }
     }
-    catch(error){
+    catch (error) {
       console.log(error);
     }
     return total.toNumber();
   }
 
   const renderNftCount = () => {
-    getTotalNFTsMintedSoFar().then((x)=>{
+    getTotalNFTsMintedSoFar().then((x) => {
       setTotalNFT(x)
     })
     return (
-    <p style={{color:"white"}}>Total tokens minted : {totalNFT} out of {TOTAL_MINT_COUNT}
-    </p>
-  )}
-                            
+      <p style={{ color: "white" }}>Total tokens minted : {totalNFT} out of {TOTAL_MINT_COUNT}
+      </p>
+    )
+  }
+
 
   useEffect(() => {
     checkIfWalletIsConnected();
